@@ -93,8 +93,8 @@ function App() {
       <footer className="footer">
         <div className="footer-container">
           <div className="footer-content">
-            <p>&copy; 2024 Your Name. All rights reserved.</p>
-            <p>Built with React.js & ❤️</p>
+            <p>&copy; 2026 Aditya Singh. All rights reserved.</p>
+            <p>Crafted with React.js & ⚡</p>
           </div>
           
           <div className="footer-links">

@@ -5,67 +5,35 @@ const Experience = () => {
   const experiences = [
     {
       id: 1,
-      company: 'TechCorp Solutions',
-      position: 'Senior Frontend Developer',
+      company: 'Eminence Technology',
+      position: 'Full Stack Developer',
       duration: '2022 - Present',
-      location: 'Remote',
+      location: 'Mohali, India',
       type: 'Full-time',
       responsibilities: [
-        'Led development of responsive web applications using React.js and TypeScript',
-        'Collaborated with UI/UX designers to implement pixel-perfect designs',
-        'Optimized application performance resulting in 40% faster load times',
-        'Mentored junior developers and conducted code reviews',
-        'Implemented automated testing strategies using Jest and Cypress'
+        'Build and maintain full-stack web applications using the MERN stack (React, Node.js, Express, MongoDB)',
+        'Develop RESTful APIs and integrate them with responsive, user-friendly frontends',
+        'Collaborate with cross-functional teams to deliver client projects on schedule',
+        'Write clean, maintainable code and participate in code reviews',
+        'Debug production issues and improve application performance and reliability'
       ],
-      technologies: ['React', 'TypeScript', 'Next.js', 'Tailwind CSS', 'GraphQL']
+      technologies: ['React', 'Node.js', 'Express.js', 'MongoDB', 'JavaScript', 'REST APIs']
     },
     {
       id: 2,
-      company: 'Digital Innovations Inc.',
-      position: 'Frontend Developer',
-      duration: '2021 - 2022',
-      location: 'New York, NY',
-      type: 'Full-time',
+      company: 'PixlerLab',
+      position: 'React.js Intern',
+      duration: 'Sep 2021 - Jan 2022',
+      location: 'Mohali, India',
+      type: 'Internship',
       responsibilities: [
-        'Developed and maintained multiple client websites using modern JavaScript frameworks',
-        'Worked closely with backend team to integrate RESTful APIs',
-        'Implemented responsive designs for mobile and desktop platforms',
-        'Participated in agile development processes and sprint planning',
-        'Created reusable component library to improve development efficiency'
+        'Learned React.js fundamentals — components, props, state, and basic hooks',
+        'Assisted seniors with small UI tasks and simple page sections under close guidance',
+        'Practiced HTML, CSS, and JavaScript while fixing minor bugs on assigned tickets',
+        'Observed how the team plans work, uses Git, and reviews code in a real project environment',
+        'Built confidence by picking up new concepts each week and applying them to hands-on tasks'
       ],
-      technologies: ['React', 'Vue.js', 'SASS', 'Bootstrap', 'REST APIs']
-    },
-    {
-      id: 3,
-      company: 'StartupHub',
-      position: 'Junior Web Developer',
-      duration: '2020 - 2021',
-      location: 'San Francisco, CA',
-      type: 'Full-time',
-      responsibilities: [
-        'Built interactive web applications using HTML, CSS, and JavaScript',
-        'Assisted in the development of e-commerce platforms',
-        'Debugged and fixed cross-browser compatibility issues',
-        'Collaborated with design team to create user-friendly interfaces',
-        'Participated in daily standups and team meetings'
-      ],
-      technologies: ['HTML5', 'CSS3', 'JavaScript', 'jQuery', 'PHP']
-    },
-    {
-      id: 4,
-      company: 'FreelanceWork',
-      position: 'Freelance Web Developer',
-      duration: '2019 - 2020',
-      location: 'Remote',
-      type: 'Contract',
-      responsibilities: [
-        'Developed custom websites for small businesses and startups',
-        'Provided ongoing maintenance and support for client websites',
-        'Created responsive designs that work across all devices',
-        'Managed multiple projects simultaneously with tight deadlines',
-        'Communicated directly with clients to understand requirements'
-      ],
-      technologies: ['WordPress', 'HTML/CSS', 'JavaScript', 'PHP', 'MySQL']
+      technologies: ['React.js', 'JavaScript', 'HTML5', 'CSS3', 'Git']
     }
   ];
 

@@ -14,6 +14,7 @@ import {
 } from "react-icons/si";
 
 import { VscVscode } from "react-icons/vsc";
+import { FiActivity } from "react-icons/fi";
 
 const Skills = () => {
   const technicalSkills = [
@@ -26,11 +27,12 @@ const Skills = () => {
   ];
 
 const tools = [
-  { name: 'Git & GitHub', icon: <SiGithub color="#181717" /> },
+  { name: 'Git & GitHub', icon: <SiGithub color="#ffffff" /> },
   { name: 'VS Code', icon: <VscVscode color="#007ACC" /> },
   { name: 'Swagger', icon: <SiSwagger color="#85EA2D" /> },
   { name: 'Postman', icon: <SiPostman color="#FF6C37" /> },
   { name: 'Docker', icon: <SiDocker color="#2496ED" /> },
+  { name: 'ElevenLabs', icon: <FiActivity color="#FF8C00" /> },
 ];
 
 

@@ -8,25 +8,32 @@ const Header = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  };
+
   return (
     <header className="header">
       <div className="container">
         <div className="logo">
-          <h2>Aditya Singh</h2>
+          <h2>Aditya<span>Singh</span></h2>
         </div>
         
         <nav className={`nav ${isMenuOpen ? 'nav-open' : ''}`}>
           <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#home" onClick={closeMenu}>Home</a></li>
+            <li><a href="#about" onClick={closeMenu}>About</a></li>
+            <li><a href="#skills" onClick={closeMenu}>Skills</a></li>
+            <li><a href="#experience" onClick={closeMenu}>Experience</a></li>
+            <li><a href="#projects" onClick={closeMenu}>Projects</a></li>
+            <li><a href="#contact" onClick={closeMenu}>Contact</a></li>
           </ul>
         </nav>
 
         <button 
-          className="menu-toggle"
+          className={`menu-toggle ${isMenuOpen ? 'active' : ''}`}
           onClick={toggleMenu}
+          aria-label="Toggle Menu"
         >
           <span></span>
           <span></span>
