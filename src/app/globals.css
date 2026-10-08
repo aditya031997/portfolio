@@ -257,6 +257,27 @@ img {
   transition: transform 0.2s var(--ease), box-shadow 0.2s;
 }
 
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nav-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  color: var(--muted);
+  transition: color 0.2s, background 0.2s;
+}
+
+.nav-icon:hover {
+  color: var(--text);
+  background: var(--surface-2);
+}
+
 .nav-cta:hover {
   box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.12);
 }
@@ -318,7 +339,7 @@ img {
 
 @media (max-width: 760px) {
   .nav-links,
-  .nav .nav-cta {
+  .nav .nav-actions {
     display: none;
   }
   .menu-btn {
@@ -1711,6 +1732,11 @@ a.social:hover {
   gap: 12px;
   border-top: 1px solid var(--border);
   padding-top: 28px;
+}
+
+.footer-links {
+  display: flex;
+  gap: 20px;
 }
 
 .site-footer a:hover {

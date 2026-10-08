@@ -6,9 +6,8 @@ export const profile = {
   email: "singhaditya4743@gmail.com",
   phone: "+91 81467 24743",
   linkedin: "https://linkedin.com/in/aditya-singh8146",
-  // Set to your profile URL (e.g. "https://github.com/username") to show it in the header and contact section.
-  github: null as string | null,
-  resume: "/Aditya_Singh_Resume.pdf",
+  github: "https://github.com/aditya031997",
+  resume: "/Aditya_Singh_resume.pdf",
   headline: "I build SEO-heavy web platforms and AI voice systems.",
   /** Same headline for the hero; words between *asterisks* render in the italic accent font. */
   headlineMarked: "I build *SEO-heavy* web platforms & *AI voice* systems.",

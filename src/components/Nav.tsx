@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { AnimatePresence, m, useScroll } from "motion/react";
 import { useEffect, useState } from "react";
 import { profile } from "@/content/profile";
+import { GitHubIcon } from "./GitHubIcon";
 
 const links = [
   { id: "work", label: "Work" },
@@ -69,9 +70,14 @@ export function Nav() {
             ))}
           </ul>
 
-          <a href={profile.resume} className="nav-cta" target="_blank" rel="noopener">
-            Resume ↗
-          </a>
+          <div className="nav-actions">
+            <a href={profile.github} className="nav-icon" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile">
+              <GitHubIcon />
+            </a>
+            <a href={profile.resume} className="nav-cta" target="_blank" rel="noopener">
+              Resume ↗
+            </a>
+          </div>
 
           <button className="menu-btn" aria-expanded={open} aria-label="Menu" onClick={() => setOpen((o) => !o)}>
             <span />
@@ -96,6 +102,11 @@ export function Nav() {
                 </Link>
               </m.li>
             ))}
+            <li>
+              <a href={profile.github} target="_blank" rel="noopener noreferrer">
+                GitHub ↗
+              </a>
+            </li>
             <li>
               <a href={profile.resume} target="_blank" rel="noopener">
                 Resume ↗

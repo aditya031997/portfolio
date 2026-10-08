@@ -51,8 +51,8 @@ export default function Home() {
               </h2>
             </div>
             <p className="section-lead">
-              Most of this is client work, so I can&apos;t share the code. Each case study explains the problem, what I
-              built and why I made certain choices.
+              Production apps built for clients across SEO, AI voice, Web3 and edtech. Each case study covers the problem,
+              my role and the technical decisions behind it.
             </p>
           </Reveal>
           <ul className="projects">
@@ -88,7 +88,9 @@ export default function Home() {
                 What I <span className="serif grad-text">work with</span>
               </h2>
             </div>
-            <p className="section-lead">Frontend, backend, databases and the tools I use every day.</p>
+            <p className="section-lead">
+              Technologies I&apos;ve used to ship real client projects, from the UI to the database.
+            </p>
           </Reveal>
           <div className="bento">
             {skills.map((group, i) => (

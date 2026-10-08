@@ -18,6 +18,6 @@
     Cache-Control = "public, max-age=0, must-revalidate"
 
 [[headers]]
-  for = "/Aditya_Singh_Resume.pdf"
+  for = "/Aditya_Singh_resume.pdf"
   [headers.values]
     Cache-Control = "public, max-age=86400"

@@ -7,7 +7,15 @@ export function SiteFooter() {
         <span>
           © {new Date().getFullYear()} {profile.name}
         </span>
-        <span>Built with Next.js, TypeScript and Motion</span>
+        <span className="footer-links">
+          <a href={profile.github} target="_blank" rel="noopener noreferrer">
+            GitHub
+          </a>
+          <a href={profile.linkedin} target="_blank" rel="noopener noreferrer">
+            LinkedIn
+          </a>
+          <a href={`mailto:${profile.email}`}>Email</a>
+        </span>
       </div>
     </footer>
   );

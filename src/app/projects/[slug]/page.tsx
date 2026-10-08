@@ -8,6 +8,7 @@ import { ProjectVisual } from "@/components/ProjectVisual";
 import { CaseToc } from "@/components/CaseToc";
 import { Reveal, Tilt } from "@/components/motion";
 import { WordReveal } from "@/components/WordReveal";
+import { GitHubIcon } from "@/components/GitHubIcon";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -81,12 +82,19 @@ export default async function ProjectPage({ params }: Props) {
                     <li key={t}>{t}</li>
                   ))}
                 </ul>
-                {project.liveUrl && (
-                  <div style={{ marginTop: 28 }}>
-                    <a href={project.liveUrl} className="btn btn-primary" target="_blank" rel="noopener noreferrer">
-                      <span>Visit live site</span>
-                      <span className="arrow">↗</span>
-                    </a>
+                {(project.liveUrl || project.githubUrl) && (
+                  <div className="hero-actions" style={{ marginTop: 28 }}>
+                    {project.liveUrl && (
+                      <a href={project.liveUrl} className="btn btn-primary" target="_blank" rel="noopener noreferrer">
+                        <span>Visit live site</span>
+                        <span className="arrow">↗</span>
+                      </a>
+                    )}
+                    {project.githubUrl && (
+                      <a href={project.githubUrl} className="btn" target="_blank" rel="noopener noreferrer">
+                        <GitHubIcon size={16} /> View code
+                      </a>
+                    )}
                   </div>
                 )}
               </div>

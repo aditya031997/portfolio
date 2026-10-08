@@ -24,6 +24,8 @@ export type Project = {
   role: string;
   stack: string[];
   liveUrl?: string;
+  /** Public repo, if the code can be shared. Adds a "View code" button to the case study. */
+  githubUrl?: string;
   videoUrl?: string;
   overview: string[];
   built: string[];
@@ -38,20 +40,22 @@ export const projects: Project[] = [
     accent: "#34d399",
     visual: "football",
     title: "Football Prediction Platform",
-    tagline: "Thousands of SEO pages built from live match data",
+    tagline: "Match tips based on team form, past results and our own calculations",
     summary:
-      "A Next.js 16 site that creates pages for every match, league, country and betting market from live data. It also has a blog powered by Payload CMS and some content locked for premium users.",
+      "A football tips platform. It looks at match history, team history, form and other factors, runs its own calculations and gives a prediction for each match. Built with Next.js 16, with thousands of SEO pages, a Payload CMS blog and premium tips for paid users.",
     period: "Jul 2026 - Present",
     status: "in-development",
     statusNote: "Private client project, not yet public",
     role: "Frontend lead & CMS integration",
     stack: ["Next.js 16", "React", "Payload CMS", "Redis", "ISR", "JSON-LD"],
     overview: [
-      "The client wanted to rank on Google for every match, league and betting market they cover. Nobody can write that many pages by hand, so the pages had to be generated from live data. They still needed to load fast and be easy for Google to crawl.",
+      "The platform gives betting tips on football matches. For every match it looks at things like head to head history, recent form, home and away record and league position, and then uses its own calculations to predict the result and the best markets to bet on.",
+      "The client wanted these tips to show up on Google for every match, league and betting market they cover. Nobody can write that many pages by hand, so the pages had to be generated from the data. They still needed to load fast and be easy for Google to crawl.",
       "I built the frontend that users see, and connected Payload CMS so their content team can write blog posts next to the generated pages.",
     ],
     built: [
-      "Page templates for matches, leagues, countries and betting markets. Data comes from a live API and pages are rendered with SSR and ISR.",
+      "Match pages that show the prediction, win probabilities and the stats behind it, like recent form and head to head results.",
+      "Page templates for leagues, countries and betting markets. Data comes from a live API and pages are rendered with SSR and ISR.",
       "SEO setup for every page: JSON-LD (SportsEvent, BreadcrumbList), canonical URLs and a separate XML sitemap for each page type.",
       "noindex on pages that don't have enough content yet, so Google only sees the useful ones.",
       "Payload CMS on its own database with collections, drafts, a rich text editor and media uploads.",
