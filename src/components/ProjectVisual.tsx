@@ -1,23 +1,36 @@
 import type { Project } from "@/content/projects";
 
 /**
- * Hand-built UI mock-ups (HTML/CSS only) that hint at each product.
- * Swap for real screenshots via `project.screenshots` when you have them.
+ * Card / hero preview. Shows the first real screenshot when the project has one,
+ * otherwise a hand-built HTML/CSS mock-up that hints at the product.
  */
-export function ProjectVisual({ project }: { project: Project }) {
-  const url = project.liveUrl ? new URL(project.liveUrl).host : `${project.slug}.app`;
+export function ProjectVisual({ project, priority = false }: { project: Project; priority?: boolean }) {
+  const shot = project.screenshots[0];
   return (
     <div className="pv-wrap" aria-hidden="true">
       <div className="pv">
-      <div className="pv-bar">
-        <i />
-        <i />
-        <i />
-        <span className="pv-url">{url}</span>
+        <div className="pv-bar">
+          <i />
+          <i />
+          <i />
+          <span className="pv-url">{project.title}</span>
+        </div>
+        {shot ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            className="pv-shot"
+            src={shot.src}
+            alt=""
+            width={1600}
+            height={807}
+            loading={priority ? "eager" : "lazy"}
+            decoding="async"
+          />
+        ) : (
+          <div className="pv-body">{bodies[project.visual]()}</div>
+        )}
       </div>
-      <div className="pv-body">{bodies[project.visual]()}</div>
-      </div>
-      {floating[project.visual]}
+      {!shot && floating[project.visual]}
     </div>
   );
 }
@@ -26,28 +39,29 @@ const bodies: Record<Project["visual"], () => React.ReactNode> = {
   football: () => (
     <>
       <div className="pv-row">
-        <span className="pv-muted">PREMIER LEAGUE · MATCHDAY 8</span>
-        <span className="pv-pill">ISR · 60s</span>
+        <span className="pv-muted">VALUE BETS · TODAY</span>
+        <span className="pv-pill">Banker</span>
       </div>
       {[
-        ["Arsenal", "Chelsea", "2 - 1", [52, 24, 24], true],
-        ["Liverpool", "Spurs", "18:30", [61, 21, 18], false],
-        ["Man City", "Newcastle", "20:45", [68, 19, 13], false],
-      ].map(([h, a, score, prob, live]) => (
+        ["Arsenal", "Chelsea", "Over 2.5", "1.92", "+4.2%", "Good Value", 64],
+        ["Liverpool", "Spurs", "BTTS Yes", "1.75", "+6.1%", "Strong Value", 82],
+        ["Man City", "Newcastle", "Home win", "1.48", "+2.4%", "Good Value", 52],
+      ].map(([h, a, market, odds, ev, band, bar]) => (
         <div key={h as string} className="pv-row" style={{ display: "grid", gap: 8, justifyContent: "normal" }}>
           <div style={{ display: "flex", justifyContent: "space-between", gap: 8 }}>
             <span>
               {h as string} <span className="pv-muted">vs</span> {a as string}
             </span>
-            <span className="pv-score">
-              {live ? <span className="pv-live-dot" /> : null}
-              {score as string}
+            <span className="pv-pill">{band as string}</span>
+          </div>
+          <div style={{ display: "flex", justifyContent: "space-between", gap: 8 }}>
+            <span className="pv-muted">
+              {market as string} @ {odds as string}
             </span>
+            <span className="pv-score pv-accent">EV {ev as string}</span>
           </div>
           <div className="pv-prob">
-            <span style={{ width: `${(prob as number[])[0]}%`, background: "var(--accent)" }} />
-            <span style={{ width: `${(prob as number[])[1]}%`, background: "rgba(255,255,255,.25)" }} />
-            <span style={{ width: `${(prob as number[])[2]}%`, background: "rgba(255,255,255,.1)" }} />
+            <span style={{ width: `${bar as number}%`, background: "var(--accent)" }} />
           </div>
         </div>
       ))}
@@ -128,12 +142,12 @@ const bodies: Record<Project["visual"], () => React.ReactNode> = {
 const floating: Record<Project["visual"], React.ReactNode> = {
   football: (
     <div className="pv-floating">
-      <span className="pv-muted">JSON-LD</span> SportsEvent ✓
+      <span className="pv-muted">LOCKED</span> at T-10 min
     </div>
   ),
   voice: (
     <div className="pv-floating">
-      <span className="pv-muted">ESCALATION</span> ticket #1042
+      <span className="pv-muted">ESCALATION</span> callback sent
     </div>
   ),
   crypto: (

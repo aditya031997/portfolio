@@ -9,6 +9,7 @@ import { CaseToc } from "@/components/CaseToc";
 import { Reveal, Tilt } from "@/components/motion";
 import { WordReveal } from "@/components/WordReveal";
 import { GitHubIcon } from "@/components/GitHubIcon";
+import { ScreenshotCarousel } from "@/components/ScreenshotCarousel";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -40,11 +41,12 @@ export default async function ProjectPage({ params }: Props) {
 
   const toc = [
     { id: "overview", label: "Overview" },
+    ...(hasMedia ? [{ id: "screens", label: "Screens" }] : []),
     { id: "built", label: "What I built" },
     { id: "architecture", label: "Architecture" },
     { id: "decisions", label: "Key decisions" },
-    ...(hasMedia ? [{ id: "screens", label: "Screens" }] : []),
   ];
+  const num = (id: string) => String(toc.findIndex((t) => t.id === id) + 1).padStart(2, "0");
 
   return (
     <div style={{ "--accent": project.accent } as React.CSSProperties}>
@@ -82,26 +84,18 @@ export default async function ProjectPage({ params }: Props) {
                     <li key={t}>{t}</li>
                   ))}
                 </ul>
-                {(project.liveUrl || project.githubUrl) && (
+                {project.githubUrl && (
                   <div className="hero-actions" style={{ marginTop: 28 }}>
-                    {project.liveUrl && (
-                      <a href={project.liveUrl} className="btn btn-primary" target="_blank" rel="noopener noreferrer">
-                        <span>Visit live site</span>
-                        <span className="arrow">↗</span>
-                      </a>
-                    )}
-                    {project.githubUrl && (
-                      <a href={project.githubUrl} className="btn" target="_blank" rel="noopener noreferrer">
-                        <GitHubIcon size={16} /> View code
-                      </a>
-                    )}
+                    <a href={project.githubUrl} className="btn" target="_blank" rel="noopener noreferrer">
+                      <GitHubIcon size={16} /> View code
+                    </a>
                   </div>
                 )}
               </div>
             </div>
             <div className="enter" style={{ "--d": "0.35s" } as React.CSSProperties}>
               <Tilt max={5}>
-                <ProjectVisual project={project} />
+                <ProjectVisual project={project} priority />
               </Tilt>
             </div>
           </div>
@@ -114,7 +108,7 @@ export default async function ProjectPage({ params }: Props) {
         <div className="case-content">
           <Reveal className="case-section" id="overview">
             <h2>
-              <span className="num">01</span>Overview
+              <span className="num">{num("overview")}</span>Overview
             </h2>
             <div className="prose">
               {project.overview.map((para) => (
@@ -123,10 +117,30 @@ export default async function ProjectPage({ params }: Props) {
             </div>
           </Reveal>
 
+          {hasMedia && (
+            <section className="case-section" id="screens">
+              <h2>
+                <span className="num">{num("screens")}</span>Screens
+              </h2>
+              <div className="shots">
+                {project.videoUrl && (
+                  <iframe
+                    className="video"
+                    src={project.videoUrl}
+                    title={`${project.title} walkthrough`}
+                    loading="lazy"
+                    allowFullScreen
+                  />
+                )}
+                <ScreenshotCarousel shots={project.screenshots} />
+              </div>
+            </section>
+          )}
+
           <section className="case-section" id="built">
             <Reveal>
               <h2>
-                <span className="num">02</span>What I built
+                <span className="num">{num("built")}</span>What I built
               </h2>
             </Reveal>
             <ul className="built-list">
@@ -144,7 +158,7 @@ export default async function ProjectPage({ params }: Props) {
           <section className="case-section" id="architecture">
             <Reveal>
               <h2>
-                <span className="num">03</span>How it fits together
+                <span className="num">{num("architecture")}</span>How it fits together
               </h2>
             </Reveal>
             <div className="flows">
@@ -157,7 +171,7 @@ export default async function ProjectPage({ params }: Props) {
           <section className="case-section" id="decisions">
             <Reveal>
               <h2>
-                <span className="num">04</span>Key decisions
+                <span className="num">{num("decisions")}</span>Key decisions
               </h2>
             </Reveal>
             <ul className="decisions">
@@ -170,32 +184,6 @@ export default async function ProjectPage({ params }: Props) {
               ))}
             </ul>
           </section>
-
-          {hasMedia && (
-            <section className="case-section" id="screens">
-              <h2>
-                <span className="num">05</span>Screens
-              </h2>
-              <div className="shots">
-                {project.videoUrl && (
-                  <iframe
-                    className="video"
-                    src={project.videoUrl}
-                    title={`${project.title} walkthrough`}
-                    loading="lazy"
-                    allowFullScreen
-                  />
-                )}
-                {project.screenshots.map((shot) => (
-                  <figure key={shot.src}>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={shot.src} alt={shot.alt} loading="lazy" />
-                    <figcaption>{shot.alt}</figcaption>
-                  </figure>
-                ))}
-              </div>
-            </section>
-          )}
 
           <Reveal>
             <Link

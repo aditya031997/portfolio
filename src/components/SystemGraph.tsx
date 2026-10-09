@@ -9,14 +9,14 @@ const W = 110;
 const H = 44;
 
 const nodes: Record<NodeId, { x: number; y: number; label: string; sub: string }> = {
-  caller: { x: 10, y: 20, label: "Caller", sub: "inbound call" },
+  caller: { x: 10, y: 20, label: "Caller", sub: "care facility" },
   twilio: { x: 155, y: 20, label: "Twilio", sub: "telephony" },
-  api: { x: 300, y: 20, label: "Node.js", sub: "call service" },
-  ai: { x: 300, y: 120, label: "AI agent", sub: "intent + answer" },
-  tts: { x: 155, y: 120, label: "ElevenLabs", sub: "voice" },
-  db: { x: 10, y: 120, label: "PostgreSQL", sub: "calls · tickets" },
-  human: { x: 300, y: 220, label: "Human agent", sub: "escalation" },
-  ticket: { x: 155, y: 220, label: "Ticket", sub: "+ transcript" },
+  api: { x: 300, y: 20, label: "ElevenLabs", sub: "voice agent" },
+  ai: { x: 300, y: 120, label: "NestJS", sub: "agent tools" },
+  tts: { x: 155, y: 120, label: "Knowledge", sub: "RAG docs" },
+  db: { x: 10, y: 120, label: "PostgreSQL", sub: "call logs" },
+  human: { x: 300, y: 220, label: "Technician", sub: "priority queue" },
+  ticket: { x: 155, y: 220, label: "Callback", sub: "email to dealer" },
 };
 
 const edges: { id: string; d: string }[] = [
@@ -32,14 +32,14 @@ const edges: { id: string; d: string }[] = [
 // One simulated call walking through the real system design.
 const script: { node: NodeId; log: string; ok?: boolean }[] = [
   { node: "caller", log: "incoming call · after hours" },
-  { node: "twilio", log: "stream opened → call service" },
-  { node: "api", log: "caller identified, context loaded" },
-  { node: "ai", log: 'intent: "reschedule appointment"' },
-  { node: "tts", log: "reply synthesised · natural voice" },
-  { node: "ai", log: "needs a human → escalating" },
-  { node: "human", log: "no agent free · retrying by priority" },
-  { node: "ticket", log: "ticket created with full transcript", ok: true },
-  { node: "db", log: "call, recording & ticket stored", ok: true },
+  { node: "twilio", log: "call routed to voice agent" },
+  { node: "api", log: "agent greets caller, collects details" },
+  { node: "ai", log: "tool: get_site_info" },
+  { node: "tts", log: "answer found in knowledge base" },
+  { node: "ai", log: "needs a technician → escalating" },
+  { node: "human", log: "calling technicians by priority" },
+  { node: "ticket", log: "no answer · callback email sent", ok: true },
+  { node: "db", log: "call and transcript saved", ok: true },
 ];
 
 export function SystemGraph() {
@@ -64,7 +64,7 @@ export function SystemGraph() {
         </span>
       </div>
 
-      <svg className="system-svg" viewBox="0 0 420 276" role="img" aria-label="Architecture of the AI receptionist: caller to Twilio to a Node.js call service and AI agent with ElevenLabs voice, escalating to a human agent or a support ticket stored in PostgreSQL.">
+      <svg className="system-svg" viewBox="0 0 420 276" role="img" aria-label="Architecture of the AI receptionist: caller to Twilio to an ElevenLabs voice agent, which uses NestJS tools and a knowledge base, escalates to technicians by priority, and falls back to a callback email. Calls are stored in PostgreSQL.">
         <defs>
           <linearGradient id="flowGrad" x1="0" x2="1">
             <stop offset="0" stopColor="#8b7bff" />

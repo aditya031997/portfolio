@@ -21,7 +21,7 @@ export type SkillGroup = { label: string; items: string[] };
 export const skills: SkillGroup[] = [
   { label: "Frontend", items: ["React", "Next.js (App Router, ISR)", "Vue.js", "Redux", "JavaScript (ES2022)", "HTML & CSS"] },
   { label: "Backend", items: ["Node.js", "Express", "NestJS", "REST API design", "JWT / bcrypt auth"] },
-  { label: "Data", items: ["PostgreSQL", "MongoDB", "Redis", "Schema design & indexing"] },
-  { label: "Integrations", items: ["Payload CMS", "Twilio", "ElevenLabs", "Web3 wallets (MetaMask, Coinbase)"] },
+  { label: "Data", items: ["PostgreSQL", "MySQL", "MongoDB", "Redis", "Schema design & indexing"] },
+  { label: "Integrations", items: ["Payload CMS", "Twilio", "ElevenLabs", "Web3 (ethers.js, Uniswap SDK)"] },
   { label: "SEO & delivery", items: ["Technical SEO", "JSON-LD structured data", "Sitemaps", "Docker", "Git", "Postman / Swagger"] },
 ];
